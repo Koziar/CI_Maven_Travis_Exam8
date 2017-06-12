@@ -2,7 +2,7 @@ language: java
 jdk: oraclejdk8
 
 services:
-  - mysql
+    - mysql
 
 cache:
   directories:
@@ -10,15 +10,15 @@ cache:
     - $HOME/.m2
 
 before_install:
-  - npm install
-  - mysql -e 'CREATE DATABASE usersDB;'
+    - npm install
+    - mysql -e 'CREATE DATABASE usersDB;'
 
 script:
-  - mvn verify site
+    - mvn verify site
 
 after_success:
-  - surge --project ./target/site --domain exercise8.surge.sh
+    - surge --project ./target/site --domain exercise8.surge.sh
 after_failure:
-  #Remove documentation for a failing project
-  - surge teardown exercise8.surge.sh
+    #Remove documentation for a failing project
+    - surge teardown exercise8.surge.sh
 
